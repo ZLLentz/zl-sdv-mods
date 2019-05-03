@@ -1,0 +1,10 @@
+﻿{
+  "Name": "ZLDebug",
+  "Author": "zllentz",
+  "Version": "0.0.1",
+  "Description": "Misc cheats mod for debugging my mods",
+  "UniqueID": "zllentz.ZLDebug",
+  "EntryDll": "ZLDebug.dll",
+  "MinimumApiVersion": "2.10.0",
+  "UpdateKeys": []
+}
