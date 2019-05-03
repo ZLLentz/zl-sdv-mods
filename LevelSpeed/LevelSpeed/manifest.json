@@ -1,0 +1,10 @@
+﻿{
+  "Name": "LevelSpeed",
+  "Author": "zllentz",
+  "Version": "0.0.1",
+  "Description": "Characters get faster as they level up.",
+  "UniqueID": "zllentz.LevelSpeed",
+  "EntryDll": "LevelSpeed.dll",
+  "MinimumApiVersion": "2.10.0",
+  "UpdateKeys": []
+}
