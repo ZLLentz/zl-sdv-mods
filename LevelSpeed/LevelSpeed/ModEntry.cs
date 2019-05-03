@@ -130,8 +130,6 @@ namespace LevelSpeed
             player.addedSpeed = addedSpeedToUse;
 
             this.lastAddedSpeed = addedSpeedToUse;
-
-            this.Monitor.Log($"Set player.addedSpeed to {player.addedSpeed}");
         }
     }
 }
