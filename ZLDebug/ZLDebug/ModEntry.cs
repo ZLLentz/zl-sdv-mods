@@ -32,34 +32,73 @@ namespace ZLDebug
         *********/
         private void GainExp(string command, string[] args)
         {
-            int SkillCode = this.ExpArgs(command, args);
-            if (SkillCode == -1)
+            Tuple<int, int> argints = this.ExpArgs(command, args);
+            int skillnum = argints.Item1;
+            int expnum = argints.Item2;
+            if (skillnum == -1 || expnum == -1)
                 return;
+
+            Game1.player.gainExperience(skillnum, expnum);
         }
         private void SetExp(string command, string[] args)
         {
-            return;
+            Tuple<int, int> argints = this.ExpArgs(command, args);
+            int skillnum = argints.Item1;
+            int expnum = argints.Item2;
+            if (skillnum == -1 || expnum == -1)
+                return;
+
+            Farmer player = Game1.player;
+            player.experiencePoints[skillnum] = 0;
+            switch (skillnum)
+            {
+                case 0:
+                    player.FarmingLevel = 0;
+                    break;
+                case 1:
+                    player.FishingLevel = 0;
+                    break;
+                case 2:
+                    player.ForagingLevel = 0;
+                    break;
+                case 3:
+                    player.MiningLevel = 0;
+                    break;
+                case 4:
+                    player.CombatLevel = 0;
+                    break;
+            }
+            player.gainExperience(skillnum, expnum);
         }
-        private int ExpArgs(string command, string[] args)
+        private Tuple<int, int> ExpArgs(string command, string[] args)
         {
             if (args.Length != 2)
             {
                 this.Monitor.Log($"{command} recieved {args.Length} args instead of 2!");
-                return -1;
+                return Tuple.Create(-1, -1);
             }
             string skill = args[0];
+            string expstr = args[1];
+            int skillnum = -1;
+            int expnum = -1;
+
+            if (!int.TryParse(expstr, out expnum))
+                this.Monitor.Log($"{expstr} cannot be parsed as an int");
+
             if (skill.Contains("farm"))
-                return 0;
-            else if (skill.Contains("min"))
-                return 1;
+                skillnum = 0;
             else if (skill.Contains("fish"))
-                return 2;
+                skillnum = 1;
             else if (skill.Contains("for"))
-                return 3;
+                skillnum = 2;
+            else if (skill.Contains("min"))
+                skillnum = 3;
             else if (skill.Contains("com"))
-                return 4;
-            this.Monitor.Log($"{skill} is not a valid skill");
-            return -1;
+                skillnum = 4;
+            else
+                this.Monitor.Log($"{skill} is not a valid skill");
+
+            return Tuple.Create(skillnum, expnum);
         }
     }
 }
