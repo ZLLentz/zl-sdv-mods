@@ -1,0 +1,10 @@
+﻿{
+  "Name": "LevelMore",
+  "Author": "zllentz",
+  "Version": "0.0.1",
+  "Description": "Extend the level curve past 10 and up to max int exp",
+  "UniqueID": "zllentz.LevelMore",
+  "EntryDll": "LevelMore.dll",
+  "MinimumApiVersion": "2.10.0",
+  "UpdateKeys": []
+}
